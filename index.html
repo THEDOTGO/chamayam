@@ -451,9 +451,33 @@
 
             }
 
-            $('#num').text(display_text-6 + '/' + e.item.count);
+            var number = e.item.count;
+
+            $('#num').text(display_text-(number/2) + '/' + number);
 
         }
+
+        $('.testimonialCarousel').on('initialized.owl.carousel changed.owl.carousel resized.owl.carousel', function (e) {
+                owl_carousel_page_numbers(e);
+            });
+
+            function owl_carousel_page_numbers(e) {
+                var item_per_page = e.page.size;
+                if (item_per_page > 1) {
+                    var min_items_index = e.item.index,
+                        max_items_index = min_items_index + item_per_page,
+                        displays_text = (min_items_index + 1) + '-' + max_items_index;
+
+                } else {
+
+                    var displays_text = (e.item.index + 1);
+
+                }
+                var count = e.item.count;
+
+                $('#count').text(displays_text- (count/2) + '/' + count);
+
+            }
          
     </script>
 </body>
