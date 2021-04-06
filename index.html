@@ -260,7 +260,8 @@
                     <img src="assets/img/gallery-image-12.jpg">
                 </div>
             </div>
-            <div class="num" id='num'></div>
+            <button class="btn btn-chamayam">Book Now</button>
+            
         </div>
     </section>
 
@@ -338,12 +339,13 @@
                     </div>
                     <p class="testAuther">Anupama Nair, <span>Kowediar</span></p>
                 </div>
-               
                 
-            </div>
-            <div class="num" id='count'></div>
+            </div>            
         </div>
     </section>
+
+
+   
 
     <footer>
         <div class="row footerUp">
@@ -400,33 +402,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     <script src="assets/js/owl.carousel.js"></script>
-    <script>
-        $('.owl-carousel').owlCarousel({
-                loop: true,
-                stagePadding: 400,
-                margin:100,
-                nav: true,
-                autoplay: false,
-                autoplayTimeout: 3000,
-                autoplayHoverPause: false,
-                responsive: {
-                    0: {
-                        items: 1,
-                        nav: true,
-                        stagePadding: 20,
-                    },
-                    600: {
-                        items: 1,
-                        nav: true,
-                        stagePadding: 20,
-                    },
-                    1000: {
-                        items: 1,
-                        nav: true,
-                    }
-                }
-            })
-    </script>
+    <script src="assets/js/customCarousel.js"></script>
 
     <script>
     //    $('.owl-carousel').on('changed.owl.carousel', function (e) {
@@ -434,50 +410,72 @@
     //         $('#num').text(e.item.index-5 + '/' + e.item.count)
     //     })
 
-    $('.galleryCarousel').on('initialized.owl.carousel changed.owl.carousel resized.owl.carousel', function (e) {
-            owl_carousel_page_numbers(e);
-        });
 
-        function owl_carousel_page_numbers(e) {
-            var items_per_page = e.page.size;
-            if (items_per_page > 1) {
-                var min_item_index = e.item.index,
-                    max_item_index = min_item_index + items_per_page,
-                    display_text = (min_item_index + 1) + '-' + max_item_index;
+ 
 
-            } else {
-
-                var display_text = (e.item.index + 1);
-
-            }
-
-            var number = e.item.count;
-
-            $('#num').text(display_text-(number/2) + '/' + number);
-
+   $(".galleryCarousel").on("initializ.owl.carousel changed.owl.carousel", function (e) {
+        if (!e.namespace) {
+            return;
         }
+        $("#num").text(
+            e.relatedTarget.relative(e.item.index) + 1 + "/" + e.item.count);
+    })
 
-        $('.testimonialCarousel').on('initialized.owl.carousel changed.owl.carousel resized.owl.carousel', function (e) {
-                owl_carousel_page_numbers(e);
-            });
+    $(".testimonialCarousel").on("initializ.owl.carousel changed.owl.carousel", function (e) {
+        if (!e.namespace) {
+            return;
+        }
+        $("#count").text(
+            e.relatedTarget.relative(e.item.index) + 1 + "/" + e.item.count);
+    })
 
-            function owl_carousel_page_numbers(e) {
-                var item_per_page = e.page.size;
-                if (item_per_page > 1) {
-                    var min_items_index = e.item.index,
-                        max_items_index = min_items_index + item_per_page,
-                        displays_text = (min_items_index + 1) + '-' + max_items_index;
+          
+    
 
-                } else {
+    // $('.galleryCarousel').on('initialize.owl.carousel changed.owl.carousel resized.owl.carousel', function (e) {
+    //         owl_carousel_page_numbers(e);
+    //     });
 
-                    var displays_text = (e.item.index + 1);
+    //     function owl_carousel_page_numbers(e) {
+    //         var items_per_page = e.page.size;
+    //         if (items_per_page > 1) {
+    //             var min_item_index = e.item.index,
+    //                 max_item_index = min_item_index + items_per_page,
+    //                 display_text = (min_item_index + 1) + '-' + max_item_index;
 
-                }
-                var count = e.item.count;
+    //         } else {
 
-                $('#count').text(displays_text- (count/2) + '/' + count);
+    //             var display_text = (e.item.index + 1);
 
-            }
+    //         }
+
+    //         var number = e.item.count;
+
+    //         $('#num').text(display_text-(number/2) + '/' + number);
+
+    //     }
+
+        // $('.testimonialCarousel').on('initialized.owl.carousel changed.owl.carousel resized.owl.carousel', function (e) {
+        //         owl_carousel_page_numbers(e);
+        //     });
+
+        //     function owl_carousel_page_numbers(e) {
+        //         var item_per_page = e.page.size;
+        //         if (item_per_page > 1) {
+        //             var min_items_index = e.item.index,
+        //                 max_items_index = min_items_index + item_per_page,
+        //                 displays_text = (min_items_index + 1) + '-' + max_items_index;
+
+        //         } else {
+
+        //             var displays_text = (e.item.index + 1);
+
+        //         }
+        //         var count = e.item.count;
+
+        //         $('#count').text(displays_text- (count/2) + '/' + count);
+
+        //     }
          
     </script>
 </body>
